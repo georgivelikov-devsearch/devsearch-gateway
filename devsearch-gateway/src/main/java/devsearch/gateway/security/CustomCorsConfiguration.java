@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
@@ -27,6 +28,8 @@ public class CustomCorsConfiguration extends org.springframework.web.cors.CorsCo
 	 * corsConfiguration.addAllowedHeader("cookie");
 	 */
 	corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+	corsConfiguration.addExposedHeader(HttpHeaders.AUTHORIZATION);
+	corsConfiguration.addExposedHeader("UserId");
 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	source.registerCorsConfiguration("/**", corsConfiguration);
 	return new CorsWebFilter(source);
