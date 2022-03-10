@@ -15,7 +15,7 @@ public class CustomCorsConfiguration extends org.springframework.web.cors.CorsCo
     public CorsWebFilter corsFilter() {
 	org.springframework.web.cors.CorsConfiguration corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
 	corsConfiguration.setAllowCredentials(true);
-	corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+	corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://127.0.0.1:3000"));
 	corsConfiguration.setAllowedMethods(Arrays.asList("*"));
 
 //	corsConfiguration.addAllowedHeader("origin");
@@ -26,6 +26,7 @@ public class CustomCorsConfiguration extends org.springframework.web.cors.CorsCo
 
 	corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
 	corsConfiguration.addExposedHeader(HttpHeaders.AUTHORIZATION);
+	// TODO Add constants
 	corsConfiguration.addExposedHeader("UserId");
 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	source.registerCorsConfiguration("/**", corsConfiguration);
