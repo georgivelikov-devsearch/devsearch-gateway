@@ -17,16 +17,13 @@ public class CustomCorsConfiguration extends org.springframework.web.cors.CorsCo
 	corsConfiguration.setAllowCredentials(true);
 	corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
 	corsConfiguration.setAllowedMethods(Arrays.asList("*"));
-	// corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT",
-	// "DELETE", "OPTIONS", "HEAD"));
 
-	/*
-	 * corsConfiguration.addAllowedHeader("origin");
-	 * corsConfiguration.addAllowedHeader("content-type");
-	 * corsConfiguration.addAllowedHeader("accept");
-	 * corsConfiguration.addAllowedHeader("authorization");
-	 * corsConfiguration.addAllowedHeader("cookie");
-	 */
+//	corsConfiguration.addAllowedHeader("origin");
+//	corsConfiguration.addAllowedHeader("content-type");
+//	corsConfiguration.addAllowedHeader("accept");
+//	corsConfiguration.addAllowedHeader("authorization");
+//	corsConfiguration.addAllowedHeader("cookie");
+
 	corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
 	corsConfiguration.addExposedHeader(HttpHeaders.AUTHORIZATION);
 	corsConfiguration.addExposedHeader("UserId");
