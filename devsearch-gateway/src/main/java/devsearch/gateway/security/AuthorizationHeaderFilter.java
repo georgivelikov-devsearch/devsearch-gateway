@@ -10,7 +10,6 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
-import io.jsonwebtoken.Jwts;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -36,12 +35,6 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
 	    }
 
-	    String authHeader = request.getHeaders().get("Authorization").get(0);
-	    String jwt = authHeader.replace("Bearer ", "");
-	    if (!isJwtValid(jwt)) {
-		return onError(exchange, "Invalid JWT", HttpStatus.UNAUTHORIZED);
-	    }
-
 	    return chain.filter(exchange);
 	};
     }
@@ -51,21 +44,5 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 	response.setStatusCode(httpStatus);
 
 	return response.setComplete();
-    }
-
-    private boolean isJwtValid(String jwt) {
-	boolean returnValue = true;
-
-	String subject = Jwts.parser()
-		.setSigningKey(env.getProperty("token.secret"))
-		.parseClaimsJws(jwt)
-		.getBody()
-		.getSubject();
-
-	if (subject == null || subject.isEmpty()) {
-	    returnValue = false;
-	}
-
-	return returnValue;
     }
 }

@@ -7,4 +7,4 @@ spring:
             allowedOrigins: "http://localhost:3000"
             allowedMethods: "*"
             allowedHeaders: "*"
-            exposedHeaders: [Authorization, userid]
+            #exposedHeaders: [Authorization, content-type]
